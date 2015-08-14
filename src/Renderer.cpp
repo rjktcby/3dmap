@@ -65,7 +65,7 @@ void Renderer::tryAddTile(tileId id, glm::vec3 pos, float tile_size)
         std::cout << "Tile=" << id << " area=" << area << std::endl;
 #endif
 
-        if ( (abs(OPTIMAL_AREA - area) >= abs(OPTIMAL_AREA - area*0.25f) || (area > OPTIMAL_AREA) ) &&
+        if ( (fabs(OPTIMAL_AREA - area) >= fabs(OPTIMAL_AREA - area*0.25f) || (area > OPTIMAL_AREA) ) &&
              (id.z() < TILE_MAX_Z) )
         {
                 dispatcher->removeTileFromAtlas(id);
@@ -230,8 +230,8 @@ void Renderer::worldToScreen(glm::vec3 world, glm::vec2 &screen)
         glm::vec4 tmp = mProjMatrix * tmptmp;
 
         if (tmp[3] < 0.0f) {
-                tmp[0] = tmp[0] / abs(tmp[3]) * 2.0f;
-                tmp[1] = tmp[1] / abs(tmp[3]) * 2.0f;
+                tmp[0] = tmp[0] / fabs(tmp[3]) * 2.0f;
+                tmp[1] = tmp[1] / fabs(tmp[3]) * 2.0f;
         } else {
                 tmp[0] = tmp[0] / tmp[3];
                 tmp[1] = tmp[1] / tmp[3];

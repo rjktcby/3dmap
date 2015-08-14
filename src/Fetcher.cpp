@@ -94,6 +94,7 @@ void Fetcher::requestFinished(CURL *http_handle)
                 return;
         }
 
+#if 0 //TODO this causes memory corruption on mac
         // Get HTTP status code
         int http_status_code = 0;
         const char *szUrl = NULL;
@@ -103,8 +104,7 @@ void Fetcher::requestFinished(CURL *http_handle)
         if (http_status_code != 200) {
                 std::cout << "[Fetcher] error: GET of url=" << szUrl << " returned http status code=" << http_status_code << std::endl;
         }
-
-        httpHandles.remove(hInfo);
+#endif
 
         curl_multi_remove_handle(multi_handle, http_handle);
         curl_easy_cleanup(http_handle);
@@ -114,6 +114,8 @@ void Fetcher::requestFinished(CURL *http_handle)
         } else {
                 dispatcher->tileRequestFinished(hInfo->id, hInfo->buf);
         }
+
+        httpHandles.remove(hInfo);
 
         delete hInfo->buf;
         delete hInfo;

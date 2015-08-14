@@ -6,7 +6,7 @@
 
 Dispatcher::Dispatcher(unsigned int width, unsigned int height)
 {
-        atlas = new Atlas(2048, 2048, 256, 256, 4);
+        atlas = new Atlas(2048, 2048, 256, 256, 8);
 
         fetcher = new Fetcher(this);
         renderer = new Renderer(this, width, height);
