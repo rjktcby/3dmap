@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 
     glfwWindowHint(GLFW_DEPTH_BITS, 16);
 
-    window = glfwCreateWindow(960, 540, "Test", NULL, NULL);
+    window = glfwCreateWindow(960, 540, "3dmap", NULL, NULL);
     if (!window) {
         std::cout << "[GLFW] error: Failed to open GLFW window" << std::endl;
         glfwTerminate();
